@@ -1,9 +1,16 @@
-using MongoExample.Core.Factories;
+using MongoExample.Core.Repositories;
+using MongoExample.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddSingleton(WebEventServiceFactory.Create());
+// Register repositories
+builder.Services.AddScoped<PostRepository>();
+builder.Services.AddScoped<UserRepository>();
+
+// Register services
+builder.Services.AddScoped<PostService>();
+builder.Services.AddScoped<UserService>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
